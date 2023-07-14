@@ -3,6 +3,7 @@ import Cart from "../cart/index";
 import * as Styles from "./styles";
 import { useSelector, useDispatch } from "react-redux";
 import UserActionTypes from '../../redux/user/action-types'
+import { handleLogin, handleLogout } from "../../redux/user/actions";
 
 function Header() {
   const { currentUser } = useSelector((rootReducer)=> rootReducer.userReducer)
@@ -12,7 +13,11 @@ function Header() {
   console.log(currentUser)
 
   const handleLoginClick = ()=>{
-    dispatch({type: UserActionTypes , payload:{name:"Lina"}})
+    dispatch(handleLogin({name:"Lina"}))
+  }
+
+  const handleLogoutClick = ()=>{
+    dispatch(handleLogout())
   }
 
   const handleCartClick = () => {
@@ -23,7 +28,11 @@ function Header() {
     <Styles.Container>
       <Styles.Logo>Redux Shopping</Styles.Logo>
       <Styles.Buttons>
-        <div onClick={handleLoginClick}>Login</div>
+      { currentUser ? (
+        <div onClick={handleLogoutClick}>Sair</div>
+        ) : (
+        <div onClick={handleLoginClick}>Logar</div>
+      ) }
         <div onClick={handleCartClick}>Carrinho</div>
       </Styles.Buttons>
 
