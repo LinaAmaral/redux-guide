@@ -5,5 +5,5 @@ export const handleLogout = () =>{
 }
 
 export const handleLogin = (payload) =>{
-    return {type: UserActionTypes.LOGIN , payload: payload}
+    return {type: UserActionTypes.LOGIN , payload}
 }
