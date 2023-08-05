@@ -4,6 +4,7 @@ import * as Styles from "./styles";
 import { useSelector, useDispatch } from "react-redux";
 import { handleLogin, handleLogout } from "../../redux/user/actions";
 import {useMemo} from "react";
+import { selectProductsCount } from "../../redux/cart/cart.selector";
 
 function Header() {
   const { currentUser } = useSelector((rootReducer)=> rootReducer.userReducer)
@@ -11,9 +12,14 @@ function Header() {
   const dispatch = useDispatch()
   const [cartIsVisible, setCartIsVisible] = useState(false);
 
-  const productsCount = useMemo(()=>{
-    return products.reduce((accumulate, current)=> accumulate + current.quantity, 0 )
-  },[products])
+
+
+
+//não vou usar mais assim pq agora vou usar o useSelector, ideal para dados derivados
+  // const productsCount = useMemo(()=>{
+  //   return products.reduce((accumulate, current)=> accumulate + current.quantity, 0 )
+  // },[products])
+  const productsCount = useSelector(selectProductsCount)
 
 
   const handleLoginClick = ()=>{
