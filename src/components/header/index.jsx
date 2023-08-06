@@ -2,7 +2,7 @@ import { useState } from "react";
 import Cart from "../cart/index";
 import * as Styles from "./styles";
 import { useSelector, useDispatch } from "react-redux";
-import { handleLogin, handleLogout } from "../../redux/user/actions";
+import { handleLogin, handleLogout } from "../../redux/user/slice";
 import { selectProductsCount } from "../../redux/cart/cart.selector";
 
 function Header() {
